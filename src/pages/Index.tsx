@@ -1,11 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import LeftTextSection from "@/components/LeftTextSection";
+import CenterContentSection from "@/components/CenterContentSection";
+import RightImageGallery from "@/components/RightImageGallery";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background flex">
+      {/* Left Section - Vertical Text */}
+      <div className="w-1/4 h-screen">
+        <LeftTextSection />
+      </div>
+      
+      {/* Center Section - Main Content */}
+      <div className="w-1/2 h-screen">
+        <CenterContentSection />
+      </div>
+      
+      {/* Right Section - Image Gallery */}
+      <div className="w-1/4 h-screen">
+        <RightImageGallery />
       </div>
     </div>
   );
