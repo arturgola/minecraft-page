@@ -67,8 +67,8 @@ const RightImageGallery = () => {
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="relative cursor-pointer group animate-gallery-float"
-              style={{ animationDelay: `${index * 0.8}s` }}
+              className="relative cursor-pointer group animate-gallery-conveyor"
+              style={{ animationDelay: `${index * 1.2}s` }}
               onClick={() => handleImageClick(image)}
             >
               <img
