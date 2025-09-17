@@ -111,3 +111,64 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Vertical conveyor animation: move from 0 -> -50% to loop duplicated stack */
+  @keyframes conveyor-vertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  .animate-conveyor-vertical {
+    animation-name: conveyor-vertical;
+    animation-duration: 18s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .animate-conveyor-vertical-reverse {
+    animation-name: conveyor-vertical;
+    animation-duration: 18s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    will-change: transform;
+  }
+  .animate-conveyor-vertical-cycled {
+    animation-name: conveyor-vertical;
+    animation-duration: 18s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    will-change: transform;
+  }
+  /* Reference-style scroll-vertical animation */
+  @keyframes scroll-vertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-33.333%);
+    }
+  }
+
+  .animate-scroll-vertical {
+    animation-name: scroll-vertical;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .animate-scroll-vertical-reverse {
+    animation-name: scroll-vertical;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    will-change: transform;
+  }
+}

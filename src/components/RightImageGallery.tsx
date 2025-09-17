@@ -17,86 +17,86 @@ const galleryImages: GalleryImage[] = [
   {
     src: gallery1,
     alt: "Coffee beans being poured",
-    note: "Vintage brass scoop with premium coffee beans showcasing the artisanal process of coffee selection and preparation."
+    note: "Vintage brass scoop with premium coffee beans showcasing the artisanal process of coffee selection and preparation.",
   },
   {
     src: gallery2,
     alt: "Hands holding ceramic cup with latte art",
-    note: "The intimate moment of enjoying a carefully crafted latte, highlighting the personal connection between barista and customer."
+    note: "The intimate moment of enjoying a carefully crafted latte, highlighting the personal connection between barista and customer.",
   },
   {
     src: gallery3,
     alt: "Vintage coffee brewing equipment",
-    note: "Traditional brewing equipment representing the timeless craft of coffee making and the pursuit of perfect extraction."
+    note: "Traditional brewing equipment representing the timeless craft of coffee making and the pursuit of perfect extraction.",
   },
   {
     src: gallery4,
     alt: "Coffee roasting machine with beans",
-    note: "Industrial coffee roasting equipment demonstrating the transformation of green beans into aromatic roasted coffee."
+    note: "Industrial coffee roasting equipment demonstrating the transformation of green beans into aromatic roasted coffee.",
   },
   {
     src: gallery5,
     alt: "Coffee cupping session setup",
-    note: "Professional coffee cupping arrangement for tasting and evaluating different coffee origins and roast profiles."
+    note: "Professional coffee cupping arrangement for tasting and evaluating different coffee origins and roast profiles.",
   },
   {
     src: gallery6,
     alt: "Coffee shop interior atmosphere",
-    note: "The contemplative space of a modern coffee shop where community and craftsmanship intersect."
-  }
+    note: "The contemplative space of a modern coffee shop where community and craftsmanship intersect.",
+  },
 ];
 
 const RightImageGallery = () => {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    number: string;
+  } | null>(null);
 
-  const handleImageClick = (image: GalleryImage) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
+  // Convert galleryImages to include number strings like '01', '02', ...
+  const images = galleryImages.map((g, idx) => ({
+    src: g.src,
+    number: String(idx + 1).padStart(2, "0"),
+  }));
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-  };
+  const duplicatedImages = [...images, ...images, ...images];
 
   return (
-    <>
-      <div className="flex flex-col justify-start items-center h-full bg-background p-4 overflow-hidden">
-        <div className="flex flex-col space-y-4 animate-slide-down">
-          {galleryImages.map((image, index) => (
+    <div className="relative overflow-hidden h-full bg-background p-4">
+      <div className="animate-scroll-vertical-reverse flex flex-col items-end w-full pr-4">
+        {duplicatedImages.map((image, index) => (
+          <div key={index} className="flex items-center mb-1 last:mb-0">
+            <img
+              src={image.src}
+              alt={`Coffee image ${image.number}`}
+              className="w-16 h-16 object-cover cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setSelectedImage(image)}
+            />
             <div
-              key={index}
-              className="relative cursor-pointer group animate-gallery-conveyor"
-              style={{ animationDelay: `${index * 1.2}s` }}
-              onClick={() => handleImageClick(image)}
+              className="poster-text text-xs opacity-60 ml-1 flex-shrink-0"
+              style={{
+                writingMode: "vertical-rl",
+                textOrientation: "mixed",
+                transform: "rotate(180deg)",
+                height: "60px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-24 h-20 object-cover border border-gallery-border hover:border-gallery-text transition-all duration-300 group-hover:shadow-lg"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
-              <div className="absolute -right-8 top-1/2 transform -translate-y-1/2">
-                <span className="text-xs text-gallery-text-muted font-light tracking-widest">
-                  [{String(index + 1).padStart(2, '0')}]
-                </span>
-              </div>
+              {image.number}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
-      {selectedImage && (
-        <ImageModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          imageSrc={selectedImage.src}
-          imageAlt={selectedImage.alt}
-          note={selectedImage.note}
-        />
-      )}
-    </>
+      <ImageModal
+        isOpen={Boolean(selectedImage)}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage?.src ?? ""}
+        imageAlt={selectedImage ? `Coffee image ${selectedImage.number}` : ""}
+        note={""}
+      />
+    </div>
   );
 };
 
