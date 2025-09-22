@@ -9,35 +9,41 @@ interface ImageModalProps {
   note: string;
 }
 
-const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalProps) => {
+const ImageModal = ({
+  isOpen,
+  onClose,
+  imageSrc,
+  imageAlt,
+  note,
+}: ImageModalProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
 
@@ -48,13 +54,13 @@ const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalPro
   const imageNumber = imageNumberMatch ? imageNumberMatch[1] : "01";
 
   return (
-    <div 
+    <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
+        isVisible ? "opacity-100" : "opacity-0"
       }`}
       onClick={onClose}
     >
-      <div 
+      <div
         className="relative animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
@@ -64,7 +70,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalPro
         >
           <X size={24} />
         </button>
-        
+
         <div className="relative flex flex-col items-center">
           <div className="absolute -top-6 left-0 text-xs text-gallery-text-muted font-light tracking-widest">
             [{imageNumber}]
