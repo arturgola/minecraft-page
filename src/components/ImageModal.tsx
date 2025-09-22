@@ -49,7 +49,6 @@ const ImageModal = ({
 
   if (!isOpen) return null;
 
-  // Extract image number from imageAlt (e.g., "Coffee image 01" -> "01")
   const imageNumberMatch = imageAlt.match(/(\d+)$/);
   const imageNumber = imageNumberMatch ? imageNumberMatch[1] : "01";
 

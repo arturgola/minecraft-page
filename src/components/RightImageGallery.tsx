@@ -53,7 +53,6 @@ const RightImageGallery = () => {
     note: string;
   } | null>(null);
 
-  // Convert galleryImages to include number strings like '01', '02', ...
   const images = galleryImages.map((g, idx) => ({
     src: g.src,
     number: String(idx + 1).padStart(2, "0"),

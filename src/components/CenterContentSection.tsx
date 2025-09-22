@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CenterContentSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -31,8 +32,15 @@ const CenterContentSection = () => {
       });
   };
 
+  const isMobile = useIsMobile();
   return (
-    <div className="flex flex-col justify-center items-center h-full bg-background p-8 relative">
+    <div
+      className={
+        isMobile
+          ? "flex flex-col justify-center items-center h-full bg-background p-2 relative"
+          : "flex flex-col justify-center items-center h-full bg-background p-8 relative"
+      }
+    >
       {/* Hidden form for Netlify build-time detection */}
       <form name="presentation-register" data-netlify="true" hidden>
         <input type="text" name="nickname" />
@@ -109,7 +117,11 @@ const CenterContentSection = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, nickname: e.target.value })
                 }
-                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                }
                 required
               />
 
@@ -121,7 +133,11 @@ const CenterContentSection = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, uuid: e.target.value })
                 }
-                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                }
                 required
               />
 
@@ -133,7 +149,11 @@ const CenterContentSection = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                }
                 required
               />
 
@@ -144,7 +164,11 @@ const CenterContentSection = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, note: e.target.value })
                 }
-                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                }
                 rows={2}
               />
             </div>
