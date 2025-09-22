@@ -13,13 +13,17 @@ const CenterContentSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const myForm = e.target as HTMLFormElement;
-    const formData = new FormData(myForm);
-
+    // Concatenate nickname, uuid, and note into one text field
+    const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
+    const payload = {
+      "form-name": "presentation-register",
+      text: combinedText,
+      email: formData.email,
+    };
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData as any).toString(),
+      body: new URLSearchParams(payload).toString(),
     })
       .then(() => {
         setIsFormOpen(false);
@@ -43,10 +47,8 @@ const CenterContentSection = () => {
     >
       {/* Hidden form for Netlify build-time detection */}
       <form name="presentation-register" data-netlify="true" hidden>
-        <input type="text" name="nickname" />
-        <input type="text" name="uuid" />
+        <input type="text" name="text" />
         <input type="email" name="email" />
-        <textarea name="note"></textarea>
       </form>
 
       <div className="text-center space-y-6 animate-fade-in">
@@ -107,7 +109,6 @@ const CenterContentSection = () => {
               name="form-name"
               value="presentation-register"
             />
-
             <div className="space-y-3">
               <input
                 type="text"
@@ -124,7 +125,6 @@ const CenterContentSection = () => {
                 }
                 required
               />
-
               <input
                 type="text"
                 name="uuid"
@@ -140,7 +140,20 @@ const CenterContentSection = () => {
                 }
                 required
               />
-
+              <textarea
+                name="note"
+                placeholder="NOTE"
+                value={formData.note}
+                onChange={(e) =>
+                  setFormData({ ...formData, note: e.target.value })
+                }
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                }
+                rows={2}
+              />
               <input
                 type="email"
                 name="email"
@@ -156,23 +169,7 @@ const CenterContentSection = () => {
                 }
                 required
               />
-
-              <textarea
-                name="note"
-                placeholder="NOTE"
-                value={formData.note}
-                onChange={(e) =>
-                  setFormData({ ...formData, note: e.target.value })
-                }
-                className={
-                  isMobile
-                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
-                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
-                }
-                rows={2}
-              />
             </div>
-
             <div className="flex justify-center pt-4">
               <button
                 type="submit"
