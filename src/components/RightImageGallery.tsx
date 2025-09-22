@@ -50,12 +50,14 @@ const RightImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState<{
     src: string;
     number: string;
+    note: string;
   } | null>(null);
 
   // Convert galleryImages to include number strings like '01', '02', ...
   const images = galleryImages.map((g, idx) => ({
     src: g.src,
     number: String(idx + 1).padStart(2, "0"),
+    note: g.note,
   }));
 
   const duplicatedImages = [...images, ...images, ...images];
@@ -94,7 +96,7 @@ const RightImageGallery = () => {
         onClose={() => setSelectedImage(null)}
         imageSrc={selectedImage?.src ?? ""}
         imageAlt={selectedImage ? `Coffee image ${selectedImage.number}` : ""}
-        note={""}
+        note={selectedImage?.note ?? ""}
       />
     </div>
   );

@@ -9,45 +9,6 @@ interface ImageModalProps {
   note: string;
 }
 
-interface GalleryImage {
-  src: string;
-  alt: string;
-  note: string;
-}
-
-const galleryImages: GalleryImage[] = [
-  {
-    src: "/src/assets/gallery-1.jpg",
-    alt: "Coffee beans being poured",
-    note: "Vintage brass scoop with premium coffee beans showcasing the artisanal process of coffee selection and preparation."
-  },
-  {
-    src: "/src/assets/gallery-2.jpg", 
-    alt: "Hands holding ceramic cup with latte art",
-    note: "The intimate moment of enjoying a carefully crafted latte, highlighting the personal connection between barista and customer."
-  },
-  {
-    src: "/src/assets/gallery-3.jpg",
-    alt: "Vintage coffee brewing equipment", 
-    note: "Traditional brewing equipment representing the timeless craft of coffee making and the pursuit of perfect extraction."
-  },
-  {
-    src: "/src/assets/gallery-4.jpg",
-    alt: "Coffee roasting machine with beans",
-    note: "Industrial coffee roasting equipment demonstrating the transformation of green beans into aromatic roasted coffee."
-  },
-  {
-    src: "/src/assets/gallery-5.jpg",
-    alt: "Coffee cupping session setup",
-    note: "Professional coffee cupping arrangement for tasting and evaluating different coffee origins and roast profiles."
-  },
-  {
-    src: "/src/assets/gallery-6.jpg",
-    alt: "Coffee shop interior atmosphere",
-    note: "The contemplative space of a modern coffee shop where community and craftsmanship intersect."
-  }
-];
-
 const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -82,7 +43,9 @@ const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalPro
 
   if (!isOpen) return null;
 
-  const imageIndex = galleryImages.findIndex(img => img.src === imageSrc) + 1;
+  // Extract image number from imageAlt (e.g., "Coffee image 01" -> "01")
+  const imageNumberMatch = imageAlt.match(/(\d+)$/);
+  const imageNumber = imageNumberMatch ? imageNumberMatch[1] : "01";
 
   return (
     <div 
@@ -102,17 +65,17 @@ const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt, note }: ImageModalPro
           <X size={24} />
         </button>
         
-        <div className="relative">
+        <div className="relative flex flex-col items-center">
           <div className="absolute -top-6 left-0 text-xs text-gallery-text-muted font-light tracking-widest">
-            [{String(imageIndex).padStart(2, '0')}]
+            [{imageNumber}]
           </div>
           <img
             src={imageSrc}
             alt={imageAlt}
             className="max-w-4xl max-h-[70vh] object-contain"
           />
-          <div className="mt-4">
-            <p className="text-sm text-gallery-text-muted tracking-wide max-w-4xl">
+          <div className="mt-4 flex justify-center">
+            <p className="text-xs text-gallery-text-muted tracking-wide leading-relaxed text-center max-w-xs px-2">
               {note}
             </p>
           </div>
