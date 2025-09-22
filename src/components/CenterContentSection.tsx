@@ -24,26 +24,30 @@ const CenterContentSection = () => {
             [PSHENÓ]
           </h1>
           <h2 className="text-base font-light tracking-[0.2em] text-gallery-text">
-            ARXIU DE NOMAD COFFEE
+            EMPIRE OF FLOATING COWS AND UNFINISHED BRIDGES
           </h2>
         </div>
 
         <div className="space-y-4 pt-8">
           <div className="space-y-1">
             <p className="text-sm font-light tracking-[0.1em] text-gallery-text">
-              27.11.2024
+              23.08.2022
             </p>
             <p className="text-sm font-light tracking-[0.1em] text-gallery-text">
-              18.00-21.00H
+              THAT DAY WE BEGAN COUNTING PUMPKINS AT DAWN
             </p>
           </div>
 
           <div className="pt-6">
             <p className="text-sm font-light tracking-[0.15em] text-gallery-text">
-              FRUTAS SELECTAS
+              CREEPER MARKET
             </p>
-            <p className="text-sm font-light tracking-[0.15em] text-gallery-text">
-              [PUJADES 95]
+            <p
+              className="text-sm font-light tracking-[0.15em] text-gallery-text cursor-pointer hover:text-gallery-text-muted transition-colors duration-200"
+              onClick={() => navigator.clipboard.writeText("play.psheno.com")}
+              title="Click to copy"
+            >
+              [play.psheno.com]
             </p>
           </div>
 
@@ -52,7 +56,7 @@ const CenterContentSection = () => {
               onClick={() => setIsFormOpen(!isFormOpen)}
               className="text-xs font-light tracking-[0.2em] text-gallery-text hover:text-gallery-text-muted transition-colors duration-200 border border-gallery-border px-4 py-2"
             >
-              [REGISTRE]
+              [REGISTRATION]
             </button>
           </div>
         </div>
@@ -112,7 +116,7 @@ const CenterContentSection = () => {
 
               <textarea
                 name="note"
-                placeholder="NOTA"
+                placeholder="NOTE"
                 value={formData.note}
                 onChange={(e) =>
                   setFormData({ ...formData, note: e.target.value })

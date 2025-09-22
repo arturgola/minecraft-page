@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ImageModal from "./ImageModal";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import gallery1 from "@/assets/screenshots/gallery-1.png";
+import gallery2 from "@/assets/screenshots/gallery-2.png";
+import gallery3 from "@/assets/screenshots/gallery-3.png";
+import gallery4 from "@/assets/screenshots/gallery-4.jpg";
+import gallery5 from "@/assets/screenshots/gallery-5.png";
+import gallery6 from "@/assets/screenshots/gallery-6.png";
 
 interface GalleryImage {
   src: string;
@@ -16,33 +16,33 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
   {
     src: gallery1,
-    alt: "Coffee beans being poured",
-    note: "Vintage brass scoop with premium coffee beans showcasing the artisanal process of coffee selection and preparation.",
+    alt: "A tall tower made of dirt blocks in Minecraft",
+    note: "Woke up to find a tower staring at me like it knew my secrets.",
   },
   {
     src: gallery2,
-    alt: "Hands holding ceramic cup with latte art",
-    note: "The intimate moment of enjoying a carefully crafted latte, highlighting the personal connection between barista and customer.",
+    alt: "Minecraft villagers gathered around a fence",
+    note: "Villagers held a silent meeting; I think they’re plotting against my fence.",
   },
   {
     src: gallery3,
-    alt: "Vintage coffee brewing equipment",
-    note: "Traditional brewing equipment representing the timeless craft of coffee making and the pursuit of perfect extraction.",
+    alt: "A Minecraft character standing on a tall structure",
+    note: "Climbed the tall thing just to drop a potato from the top. Felt powerful.",
   },
   {
     src: gallery4,
-    alt: "Coffee roasting machine with beans",
-    note: "Industrial coffee roasting equipment demonstrating the transformation of green beans into aromatic roasted coffee.",
+    alt: "Minecraft bridge over a river with a mountain in the background",
+    note: "Crossed the bridge while a creeper hummed under the mountain.",
   },
   {
     src: gallery5,
-    alt: "Coffee cupping session setup",
-    note: "Professional coffee cupping arrangement for tasting and evaluating different coffee origins and roast profiles.",
+    alt: "A cozy house with a red roof in a Minecraft village",
+    note: "Red‑roof house smells like bread and suspicious ambition.",
   },
   {
     src: gallery6,
-    alt: "Coffee shop interior atmosphere",
-    note: "The contemplative space of a modern coffee shop where community and craftsmanship intersect.",
+    alt: "A windmill in a Minecraft village",
+    note: "Windmill still spins even though Loe swears he never built it.",
   },
 ];
 

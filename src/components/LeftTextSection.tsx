@@ -4,25 +4,25 @@ const LeftTextSection = () => {
       <div className="transform -rotate-90 origin-left translate-x-8 translate-y-80">
         <div className="whitespace-nowrap space-y-2">
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD
+            TODAY I COUNTED PUMPKINS UNTIL THE SUN FELL BEHIND THE BLOCKY HILLS
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM
+            LOE STILL HAS NOT FINISHED THE WATERMILL HE PROMISED THREE DAYS AGO
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            VENIAM QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX
+            I FED THE SHEEP AND WATCHED A ZOMBIE DANCE IN THE RIVER AT SUNSET
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            EA COMMODO CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN
+            BUILT A TOWER OF DIRT JUST TO SEE THE VILLAGE FROM ABOVE THE CLOUDS
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+            FOUND A CAVE FULL OF BATS THAT SCREAMED LIKE BROKEN NOTE BLOCKS
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT SUNT IN CULPA QUI
+            LOE SAID HE WAS MINING BUT I SAW HIM FISHING NEAR THE OLD BRIDGE
           </p>
           <p className="text-xs tracking-[0.2em] font-light text-gallery-text-muted uppercase">
-            OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM CONSECTETUR ADIPISCING
+            TOMORROW I WILL PLANT MORE PUMPKINS AND MAYBE START A LAVA FOUNTAIN
           </p>
         </div>
       </div>
