@@ -4,20 +4,43 @@ const CenterContentSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({
     nickname: "",
-    keyNumber: "",
+    uuid: "",
     email: "",
     note: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form will be handled by Netlify
-    setIsFormOpen(false);
-    setFormData({ nickname: "", keyNumber: "", email: "", note: "" });
+
+    const myForm = e.target as HTMLFormElement;
+    const formData = new FormData(myForm);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => {
+        setIsFormOpen(false);
+        setFormData({ nickname: "", uuid: "", email: "", note: "" });
+        alert("Registration submitted successfully!");
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+        alert("Error submitting registration. Please try again.");
+      });
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-full bg-background p-8 relative">
+      {/* Hidden form for Netlify build-time detection */}
+      <form name="presentation-register" data-netlify="true" hidden>
+        <input type="text" name="nickname" />
+        <input type="text" name="uuid" />
+        <input type="email" name="email" />
+        <textarea name="note"></textarea>
+      </form>
+
       <div className="text-center space-y-6 animate-fade-in">
         <div className="space-y-2">
           <h1 className="text-lg font-light tracking-[0.3em] text-gallery-text uppercase">
@@ -92,11 +115,11 @@ const CenterContentSection = () => {
 
               <input
                 type="text"
-                name="keyNumber"
-                placeholder="UUDI"
-                value={formData.keyNumber}
+                name="uuid"
+                placeholder="UUID"
+                value={formData.uuid}
                 onChange={(e) =>
-                  setFormData({ ...formData, keyNumber: e.target.value })
+                  setFormData({ ...formData, uuid: e.target.value })
                 }
                 className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
                 required
