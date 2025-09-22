@@ -10,30 +10,17 @@ const CenterContentSection = () => {
     note: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Concatenate nickname, uuid, and note into one text field
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Before submit, set the combined value in the hidden input
+    const form = e.currentTarget;
     const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
-    const payload = {
-      "form-name": "presentation-register",
-      text: combinedText,
-      email: formData.email,
-    };
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(payload).toString(),
-    })
-      .then(() => {
-        setIsFormOpen(false);
-        setFormData({ nickname: "", uuid: "", email: "", note: "" });
-        alert("Registration submitted successfully!");
-      })
-      .catch((error) => {
-        console.error("Form submission error:", error);
-        alert("Error submitting registration. Please try again.");
-      });
+    const textInput = form.querySelector(
+      'input[name="text"]'
+    ) as HTMLInputElement;
+    if (textInput) {
+      textInput.value = combinedText;
+    }
+    // Allow native submission
   };
 
   const isMobile = useIsMobile();
@@ -109,6 +96,7 @@ const CenterContentSection = () => {
               name="form-name"
               value="presentation-register"
             />
+            <input type="hidden" name="text" value={``} readOnly />
             <div className="space-y-3">
               <input
                 type="text"
