@@ -44,7 +44,7 @@ const Index = () => {
       </div>
       {isMobile && showPopup && (
         <div
-          className="fixed left-1/2 bottom-6 -translate-x-1/2 px-6 py-3 rounded-lg bg-black bg-opacity-80 text-white text-xs font-medium shadow-lg animate-glow z-50"
+          className="fixed left-1/2 bottom-6 -translate-x-1/2 px-6 py-3 rounded-lg bg-black bg-opacity-50 text-white text-xs font-medium shadow-lg animate-glow z-50"
           style={{ pointerEvents: "none" }}
         >
           We recommend using the PC version of this webpage for the best
