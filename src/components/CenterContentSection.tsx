@@ -2,13 +2,18 @@ import { useState } from "react";
 
 const CenterContentSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formData, setFormData] = useState({ nickname: "", keyNumber: "" });
+  const [formData, setFormData] = useState({
+    nickname: "",
+    keyNumber: "",
+    email: "",
+    note: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Form will be handled by Netlify
     setIsFormOpen(false);
-    setFormData({ nickname: "", keyNumber: "" });
+    setFormData({ nickname: "", keyNumber: "", email: "", note: "" });
   };
 
   return (
@@ -54,13 +59,13 @@ const CenterContentSection = () => {
       </div>
 
       {isFormOpen && (
-        <div className="absolute bottom-0 left-0 right-0 p-8 animate-drop-up">
+        <div className="w-full mt-8 animate-drop-up">
           <form
             name="presentation-register"
             method="POST"
             data-netlify="true"
             onSubmit={handleSubmit}
-            className="space-y-4 bg-background border-t border-gallery-border pt-6"
+            className="space-y-4 bg-background border-t border-gallery-border pt-6 px-8"
           >
             <input
               type="hidden"
@@ -91,6 +96,29 @@ const CenterContentSection = () => {
                 }
                 className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
                 required
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="EMAIL"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
+                required
+              />
+
+              <textarea
+                name="note"
+                placeholder="NOTA"
+                value={formData.note}
+                onChange={(e) =>
+                  setFormData({ ...formData, note: e.target.value })
+                }
+                className="w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                rows={2}
               />
             </div>
 
