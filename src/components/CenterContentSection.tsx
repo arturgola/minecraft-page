@@ -11,7 +11,6 @@ const CenterContentSection = () => {
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Before submit, set the combined value in the hidden input
     const form = e.currentTarget;
     const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
     const textInput = form.querySelector(
@@ -20,7 +19,7 @@ const CenterContentSection = () => {
     if (textInput) {
       textInput.value = combinedText;
     }
-    // Allow native submission
+    // No alert or form closing after submit
   };
 
   const isMobile = useIsMobile();
@@ -101,7 +100,7 @@ const CenterContentSection = () => {
               <input
                 type="text"
                 name="nickname"
-                placeholder="NICKNAME"
+                placeholder="NICKNAME:"
                 value={formData.nickname}
                 onChange={(e) =>
                   setFormData({ ...formData, nickname: e.target.value })
@@ -116,7 +115,7 @@ const CenterContentSection = () => {
               <input
                 type="text"
                 name="uuid"
-                placeholder="UUID"
+                placeholder="UUID:"
                 value={formData.uuid}
                 onChange={(e) =>
                   setFormData({ ...formData, uuid: e.target.value })
@@ -128,24 +127,10 @@ const CenterContentSection = () => {
                 }
                 required
               />
-              <textarea
-                name="note"
-                placeholder="NOTE"
-                value={formData.note}
-                onChange={(e) =>
-                  setFormData({ ...formData, note: e.target.value })
-                }
-                className={
-                  isMobile
-                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
-                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
-                }
-                rows={2}
-              />
               <input
                 type="email"
                 name="email"
-                placeholder="EMAIL"
+                placeholder="EMAIL:"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -156,6 +141,20 @@ const CenterContentSection = () => {
                     : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2"
                 }
                 required
+              />
+              <textarea
+                name="note"
+                placeholder="NOTE:"
+                value={formData.note}
+                onChange={(e) =>
+                  setFormData({ ...formData, note: e.target.value })
+                }
+                className={
+                  isMobile
+                    ? "w-[90vw] max-w-full bg-transparent border-b border-gallery-border text-xs font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                    : "w-full bg-transparent border-b border-gallery-border text-sm font-light tracking-[0.1em] text-gallery-text placeholder:text-gallery-text-muted focus:outline-none focus:border-gallery-text pb-2 resize-none min-h-[40px]"
+                }
+                rows={2}
               />
             </div>
             <div className="flex justify-center pt-4">
