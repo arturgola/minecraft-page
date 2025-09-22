@@ -84,7 +84,7 @@ const CenterContentSection = () => {
               <input
                 type="text"
                 name="keyNumber"
-                placeholder="KEY NUMBER"
+                placeholder="UUDI"
                 value={formData.keyNumber}
                 onChange={(e) =>
                   setFormData({ ...formData, keyNumber: e.target.value })
