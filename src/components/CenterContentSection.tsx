@@ -11,18 +11,14 @@ const CenterContentSection = () => {
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const form = e.currentTarget;
     const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
-    const payload = {
-      "form-name": "presentation-register",
-      text: combinedText,
-      email: formData.email,
-    };
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(payload).toString(),
-    });
+    const textInput = form.querySelector(
+      'input[name="text"]'
+    ) as HTMLInputElement;
+    if (textInput) {
+      textInput.value = combinedText;
+    }
   };
 
   const isMobile = useIsMobile();
