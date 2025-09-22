@@ -23,7 +23,7 @@ const Index = () => {
         <div
           className={
             isMobile
-              ? "w-[20%] h-full opacity-20 pointer-events-none transition-all duration-300"
+              ? "w-[25%] h-full opacity-20 pointer-events-none transition-all duration-300"
               : "w-1/4 h-full"
           }
         >
@@ -35,7 +35,7 @@ const Index = () => {
         <div
           className={
             isMobile
-              ? "w-[20%] h-full opacity-20 pointer-events-none transition-all duration-300"
+              ? "w-[30%] h-full opacity-20 pointer-events-none transition-all duration-300"
               : "w-1/4 h-full"
           }
         >
