@@ -40,7 +40,7 @@ const CenterContentSection = () => {
 
           <div className="pt-6">
             <p className="text-sm font-light tracking-[0.15em] text-gallery-text">
-              CREEPER MARKET
+              CREEPER MARKET ADDRESS:
             </p>
             <p
               className="text-sm font-light tracking-[0.15em] text-gallery-text cursor-pointer hover:text-gallery-text-muted transition-colors duration-200"
@@ -131,7 +131,7 @@ const CenterContentSection = () => {
                 type="submit"
                 className="text-xs font-light tracking-[0.2em] text-gallery-text hover:text-gallery-text-muted transition-colors duration-200 border border-gallery-border px-6 py-2"
               >
-                [ENVIAR]
+                [SEND]
               </button>
             </div>
           </form>
