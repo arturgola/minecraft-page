@@ -109,7 +109,12 @@ const CenterContentSection = () => {
               name="form-name"
               value="presentation-register"
             />
-            <input type="hidden" name="text" value={``} readOnly />
+            <input
+              type="hidden"
+              name="text"
+              value={`Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`}
+              readOnly
+            />
             <div className="space-y-3">
               <input
                 type="text"
