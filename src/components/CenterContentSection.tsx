@@ -9,15 +9,29 @@ const CenterContentSection = () => {
     email: "",
     note: "",
   });
+  const [showPopup, setShowPopup] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const form = e.currentTarget;
     const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
-    const textInput = form.querySelector(
-      'input[name="text"]'
-    ) as HTMLInputElement;
-    if (textInput) {
-      textInput.value = combinedText;
+
+    // Prepare form data for Netlify
+    const data = new FormData();
+    data.append("form-name", "presentation-register");
+    data.append("text", combinedText);
+    data.append("email", formData.email);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        body: data,
+      });
+      setShowPopup(true);
+      setIsFormOpen(false);
+      setFormData({ nickname: "", uuid: "", email: "", note: "" });
+    } catch (err) {
+      alert("Failed to send registration. Please try again.");
     }
   };
 
@@ -88,6 +102,7 @@ const CenterContentSection = () => {
             data-netlify="true"
             onSubmit={handleSubmit}
             className="space-y-4 bg-background border-t border-gallery-border pt-6 px-8"
+            autoComplete="off"
           >
             <input
               type="hidden"
@@ -165,6 +180,20 @@ const CenterContentSection = () => {
               </button>
             </div>
           </form>
+        </div>
+      )}
+
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-background border border-gallery-border rounded-lg p-6 shadow-lg text-center animate-fade-in">
+            <p className="text-lg text-gallery-text mb-4">Registration sent!</p>
+            <button
+              className="text-xs font-light tracking-[0.2em] text-gallery-text hover:text-gallery-text-muted transition-colors duration-200 border border-gallery-border px-6 py-2"
+              onClick={() => setShowPopup(false)}
+            >
+              [CLOSE]
+            </button>
+          </div>
         </div>
       )}
     </div>
