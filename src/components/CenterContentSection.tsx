@@ -11,28 +11,23 @@ const CenterContentSection = () => {
   });
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Set the hidden text input value before submit
     const form = e.currentTarget;
     const combinedText = `Nickname: ${formData.nickname}\nUUID: ${formData.uuid}\nNote: ${formData.note}`;
-
-    // Prepare form data for Netlify
-    const data = new FormData();
-    data.append("form-name", "presentation-register");
-    data.append("text", combinedText);
-    data.append("email", formData.email);
-
-    try {
-      await fetch("/", {
-        method: "POST",
-        body: data,
-      });
+    const textInput = form.querySelector(
+      'input[name="text"]'
+    ) as HTMLInputElement;
+    if (textInput) {
+      textInput.value = combinedText;
+    }
+    // Allow normal form submission
+    // Show popup after a short delay (simulate Netlify response)
+    setTimeout(() => {
       setShowPopup(true);
       setIsFormOpen(false);
       setFormData({ nickname: "", uuid: "", email: "", note: "" });
-    } catch (err) {
-      alert("Failed to send registration. Please try again.");
-    }
+    }, 1000);
   };
 
   const isMobile = useIsMobile();
