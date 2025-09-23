@@ -20,22 +20,32 @@ const Index = () => {
   return (
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center box-border p-[5%] relative">
       <div className="w-full h-full flex">
+        {/* Mobile: use flex-basis and max-w to prevent overflow and shrinking */}
         <div
           className={
             isMobile
-              ? "w-[25%] h-full opacity-20 pointer-events-none transition-all duration-300"
+              ? "basis-[20%] max-w-[20%] h-full opacity-20 pointer-events-none transition-all duration-300"
               : "w-1/4 h-full"
           }
         >
           <LeftTextSection />
         </div>
-        <div className={isMobile ? "w-[60%] h-full" : "w-1/2 h-full"}>
-          <CenterContentSection />
+        <div
+          className={
+            isMobile
+              ? "basis-[60%] max-w-[60%] h-full flex items-center justify-center"
+              : "w-1/2 h-full flex items-center justify-center"
+          }
+        >
+          {/* Ensure registration form/content is not too thin on mobile */}
+          <div className={isMobile ? "w-full max-w-xs mx-auto" : "w-full"}>
+            <CenterContentSection />
+          </div>
         </div>
         <div
           className={
             isMobile
-              ? "w-[30%] h-full opacity-20 pointer-events-none transition-all duration-300"
+              ? "basis-[20%] max-w-[20%] h-full opacity-20 pointer-events-none transition-all duration-300"
               : "w-1/4 h-full"
           }
         >
